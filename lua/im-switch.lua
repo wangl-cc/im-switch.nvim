@@ -46,11 +46,6 @@ M.opts = {
   pattern = { "*.md", "*.txt" },
 }
 
---- IM name to switch to in normal mode
---- @type string
---- @default "com.apple.keylayout.ABC"
-M.opts.normal_im = "com.apple.keylayout.ABC"
-
 ---@param opts IMSwitchOptions
 function M.setup(opts)
   if opts.normal_im then M.opts.normal_im = opts.normal_im end
