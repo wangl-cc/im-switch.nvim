@@ -66,5 +66,5 @@ But if you only enable IM switching manually, it's fine to use lazy loading:
 ## Thanks
 
 - [daipeihust/im-select](https://github.com/daipeihust/im-select):
-    [MIT license](https://github.com/daipeihust/im-select/blob/9cd5278b185a9d6daa12ba35471ec2cc1a2e3012/README.md),
+    [MIT license](https://github.com/daipeihust/im-select/blob/9cd5278b185a9d6daa12ba35471ec2cc1a2e3012/LICENSE)
     the objective-c code is copied from it with some modifications.
