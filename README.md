@@ -8,6 +8,7 @@ A simple neovim plugin to automatically switch input method (only support macOS 
 - File patterns to enable IM switching only in specific files.
 - Support different IM in different buffers.
 - Async, no blocking.
+- Manually toggle IM switching by `:IMSwitch` command.
 
 ## Installation
 
@@ -17,8 +18,25 @@ Use your favorite plugin manager, for example, with `lazy.nvim`:
 {
   'wangl-cc/im-switch',
   dependencies = { "nvim-lua/plenary.nvim" },
-  event = 'VeryLazy',
+  lazy = false,
   opts = {},
+}
+```
+
+Note: Lazy loading may not works well if you wan't to enable IM switching automatically.
+The first buffer may not be enabled correctly until you re-enter the buffer.
+So it's recommended to don't use lazy loading.
+
+But if you only enable IM switching manually, it's fine to use lazy loading:
+
+```lua
+{
+  'wangl-cc/im-switch',
+  dependencies = { "nvim-lua/plenary.nvim" },
+  cmd = "IMSwitch",
+  opts = {
+      filter = false,
+  },
 }
 ```
 
@@ -26,14 +44,26 @@ Use your favorite plugin manager, for example, with `lazy.nvim`:
 
 ```lua
 {
-   normal_im = 'com.apple.keylayout.ABC', -- IM to switch in normal mode
-   pattern = { "*.md", "*.txt" }, -- File patterns to enable IM switching
+  normal_im = "com.apple.keylayout.ABC", -- IM to switch in normal mode
+  -- Filter to decide which buffer to enable IM switching
+  -- Set filter to false to don't enable IM switching automatically
+  -- Set filter to true to enable IM switching in all buffers
+  filter = {
+    -- File patterns to enable IM switching
+    pattern = { "*.md", "*.txt" },
+    -- Buffer options to enable IM switching
+    -- each option can be a value or a list of values
+    bo = {
+      readonly = false,
+      buftype = "",
+    },
+  },
+  -- Whether to create `IMSwitch` command
+  command = true,
 }
 ```
 
 ## Thanks
-
-This plugin is inspired by:
 
 - [daipeihust/im-select](https://github.com/daipeihust/im-select):
     [MIT license](https://github.com/daipeihust/im-select/blob/9cd5278b185a9d6daa12ba35471ec2cc1a2e3012/README.md),
