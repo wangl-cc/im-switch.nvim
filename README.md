@@ -18,16 +18,12 @@ Use your favorite plugin manager, for example, with `lazy.nvim`:
 {
   'wangl-cc/im-switch',
   dependencies = { "nvim-lua/plenary.nvim" },
-  lazy = false,
+  event = "BufWinEnter",
   opts = {},
 }
 ```
 
-Note: Lazy loading may not works well if you wan't to enable IM switching automatically.
-The first buffer may not be enabled correctly until you re-enter the buffer.
-So it's recommended to don't use lazy loading.
-
-But if you only enable IM switching manually, it's fine to use lazy loading:
+If you only enable IM switching manually, you can lazy load it by cmd:
 
 ```lua
 {
@@ -35,7 +31,7 @@ But if you only enable IM switching manually, it's fine to use lazy loading:
   dependencies = { "nvim-lua/plenary.nvim" },
   cmd = "IMSwitch",
   opts = {
-      filter = false,
+    filter = false,
   },
 }
 ```

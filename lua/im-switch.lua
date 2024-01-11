@@ -127,7 +127,7 @@ function M.setup(user_opts)
 
   if opts.filter then
     if type(opts.filte) == "boolean" then
-      vim.api.nvim_create_autocmd({ "BufEnter" }, {
+      vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
         callback = function(arg)
           local buffer = arg.buf
           if vim.b[buffer].im_switch_manual or vim.b[buffer].im_switch_attached then
@@ -138,7 +138,7 @@ function M.setup(user_opts)
         group = autogroup,
       })
     else
-      vim.api.nvim_create_autocmd({ "BufEnter" }, {
+      vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
         pattern = opts.filter.pattern,
         callback = function(arg)
           local buffer = arg.buf
